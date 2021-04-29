@@ -13,3 +13,9 @@ stow -t ~ */
 ```shell
 git pull --recurse-submodules
 ```
+
+### Testing
+
+```shell
+sudo docker build -t DotfilesTester -f Dockerfile . && docker run -it foo
+```
