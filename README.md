@@ -17,5 +17,5 @@ git pull --recurse-submodules
 ### Testing
 
 ```shell
-sudo docker build -t DotfilesTester -f Dockerfile . && docker run -it foo
+sudo docker build -t DotfilesTester -f Dockerfile . && docker run -it DotfilesTester
 ```
