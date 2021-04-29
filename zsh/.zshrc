@@ -20,7 +20,7 @@ plugins=(
   colored-man-pages
   colorize
   cp
-  zsh-syntax-highlighting
+  fast-syntax-highlighting
 )
 
 # Automatically change the current working directory after closing ranger
@@ -37,7 +37,6 @@ bindkey -s '^o' 'ranger_cd\C-m'
 
 # Source
 source $ZSH/oh-my-zsh.sh
-#source $ZSH/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # Aliases
 alias rm=trash
