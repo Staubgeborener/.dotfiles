@@ -26,5 +26,7 @@ USER tester
 ENV HOME /home/tester
 
 WORKDIR /home/tester/.dotfiles
+RUN chmod +x install.sh
+RUN ./install.sh
 RUN git submodule update --init
 RUN stow -t ~ */

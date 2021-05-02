@@ -40,4 +40,5 @@ source $ZSH/oh-my-zsh.sh
 
 # Aliases
 alias rm=trash
+alias icat="kitty +kitten icat"
 eval $(thefuck --alias)
