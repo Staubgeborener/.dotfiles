@@ -6,12 +6,14 @@ RUN apt-get update && \
       curl \
       git \
       libbz2-dev \
+      libfontconfig \
       libreadline-dev \
       libssl-dev \
       libsqlite3-dev \
       locales \
       stow \
       sudo \
+      zlib1g-dev \
       zsh \
     && apt-get clean
 
@@ -24,9 +26,15 @@ RUN chown -R tester:tester /home/tester && \
 USER tester
 
 ENV HOME /home/tester
-
 WORKDIR /home/tester/.dotfiles
+
+RUN git clone --depth=1 https://github.com/pyenv/pyenv.git ${HOME}/.pyenv
+ENV PATH="${HOME}/.pyenv/shims:${HOME}/.pyenv/bin:${PATH}"
+
+ENV PYTHON_VERSION=3.9.0
+RUN pyenv install ${PYTHON_VERSION}
+RUN pyenv global ${PYTHON_VERSION}
+
 RUN chmod +x install.sh
-RUN ./install.sh
 RUN git submodule update --init
 RUN stow -t ~ */
