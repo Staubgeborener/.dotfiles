@@ -41,4 +41,5 @@ source $ZSH/oh-my-zsh.sh
 # Aliases
 alias rm=trash
 alias icat="kitty +kitten icat"
+alias {spt,spotify-cli,spotify-tui}="~/.config/spotifyd/run"
 eval $(thefuck --alias)
