@@ -1,4 +1,5 @@
 #!/bin/zsh
+dotfilespath = `pwd`
 
 #add keys
 #docker
@@ -54,7 +55,7 @@ mkdir ~/.cache/spotifyd-offline-cache
 git clone https://github.com/Spotifyd/spotifyd.git
 cd spotifyd
 cargo build --release
-cd ..
+cd $dotfilespath
 
 #ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -97,6 +98,15 @@ then
 	pass init $spotifydpublickey
 	pass insert spotify
 fi
+
+#i3-gaps
+git clone https://github.com/Airblader/i3 ~/i3
+cd ~/i3
+mkdir -p build && cd build
+meson --prefix /usr/local
+ninja
+sudo ninja install
+cd $dotfilespath
 
 rm ~/.zshrc
 stow -t ~ */
