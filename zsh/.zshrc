@@ -42,4 +42,23 @@ source $ZSH/oh-my-zsh.sh
 alias rm=trash
 alias icat="kitty +kitten icat"
 alias {spt,spotify-cli,spotify-tui}="~/.config/spotifyd/run"
+# Add, commit and sign
+alias gac="git add . && git commit -S -m" # + commit message
+# Initialize
+alias gi="git init && gac 'Initial commit'"
+# Pushing/pulling from remotes
+alias gp="git push" # + remote & branch names
+alias gl="git pull" # + remote & branch names
+# Pushing/pulling to origin remote
+alias gpo="git push origin" # + branch name
+alias glo="git pull origin" # + branch name
+# Pushing/pulling to origin remote, master branch
+alias gpom="git push origin master"
+alias glom="git pull origin master"
+# Create new branch or checkout into existing branch
+alias gb="git branch" # + branch name
+alias gc="git checkout" # + branch name
+# Create new branch and checkout into it
+alias gcb="git checkout -b" # + branch name
+#fuck
 eval $(thefuck --alias)
