@@ -25,6 +25,7 @@ sudo apt install -y \
       libssl-dev \
       libsqlite3-dev \
       locales \
+      mount.cifs \
       npm \
       openvpn \
       pass \
