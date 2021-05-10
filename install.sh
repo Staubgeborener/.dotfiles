@@ -72,10 +72,8 @@ cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applicatio
 sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop
 sudo ln -s ~/.local/kitty.app/bin/kitty /usr/bin
 
-#gpg
-echo "Set up gpg keys for git and spotifd? (yes/no)"
-read input
-if [ "$input" == "yes"]
+read -p "Set up gpg keys for git and spotifd? " -n 1 -r
+if [[ $REPLY =~ ^[Yy]$ ]]
 then
 	read -p "Path to private key: " gpg-private-key
 	read -p "Path to public key: " gpg-public-key
