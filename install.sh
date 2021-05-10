@@ -8,6 +8,7 @@ curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o 
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 #openvpn
 #sudo wget https://swupdate.openvpn.net/repos/openvpn-repo-pkg-key.pub
+echo "deb http://deb.debian.org/debian buster-backports main contrib non-free" >> /etc/apt/sources.list
 
 sudo apt update
 sudo apt install -y \
@@ -117,12 +118,7 @@ sudo apt install -y \
   xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev \
   libiw-dev libcurl4-openssl-dev libpulse-dev \
   libxcb-composite0-dev xcb libxcb-ewmh2 libjsoncpp-dev python3-sphinx
-git clone https://github.com/polybar/polybar ~/polybar
-cd ~/polybar
-git tag # see what version do you need
-git checkout 3.4.1
-./build.sh
-cd $dotfilespath
+sudo apt -t buster-backports install -y polybar
 
 rm ~/.zshrc
 rm ~/.config/i3/config
