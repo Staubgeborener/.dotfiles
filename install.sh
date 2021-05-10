@@ -117,7 +117,7 @@ sudo apt install -y \
   xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev \
   libiw-dev libcurl4-openssl-dev libpulse-dev \
   libxcb-composite0-dev xcb libxcb-ewmh2 libjsoncpp-dev python3-sphinx
-git clone https://github.com/jaagr/polybar.git ~/polybar
+git clone https://github.com/polybar/polybar ~/polybar
 cd ~/polybar
 git tag # see what version do you need
 git checkout 3.4.1
