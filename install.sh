@@ -1,5 +1,5 @@
 #!/bin/zsh
-dotfilespath = `pwd`
+dotfilespath=`pwd`
 
 #add keys
 #docker
