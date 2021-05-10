@@ -1,5 +1,6 @@
 # Prompt
-autoload -U promptinit; promptinit
+autoload -U promptinit;
+promptinit
 prompt pure
 
 # Path
