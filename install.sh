@@ -15,6 +15,7 @@ sudo apt install -y \
       build-essential \
       ca-certificates \
       cargo \
+      cifs-utils \
       curl \
       git \
       imagemagick \
@@ -25,7 +26,6 @@ sudo apt install -y \
       libssl-dev \
       libsqlite3-dev \
       locales \
-      mount.cifs \
       npm \
       openvpn \
       pass \
