@@ -26,6 +26,8 @@ sudo apt install -y \
       libssl-dev \
       libsqlite3-dev \
       locales \
+      meson \
+      ninja-build \
       npm \
       openvpn \
       pass \
@@ -108,7 +110,7 @@ sudo ninja install
 cd $dotfilespath
 
 #polybar
-sudo apt-get install \
+sudo apt install -y \
   cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev \
   libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev \
   libxcb-util0-dev libxcb-xkb-dev pkg-config python3-xcbgen \
