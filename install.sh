@@ -125,6 +125,7 @@ git checkout 3.4.1
 cd $dotfilespath
 
 rm ~/.zshrc
+rm ~/.config/i3/config
 stow -t ~ */
 source ~/.zshrc
 chsh -s $(which zsh)
