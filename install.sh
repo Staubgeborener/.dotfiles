@@ -58,7 +58,7 @@ sudo pip3 install thefuck
 mkdir ~/.cache/spotifyd-offline-cache
 git clone https://github.com/Spotifyd/spotifyd.git
 cd spotifyd
-cargo build --release --feature dbus_mpris
+cargo build --release --features dbus_mpris
 cd $dotfilespath
 
 #ohmyzsh
