@@ -121,8 +121,9 @@ sudo apt install -y \
   libxcb-composite0-dev xcb libxcb-ewmh2 libjsoncpp-dev python3-sphinx
 sudo apt -t buster-backports install -y polybar
 
-rm ~/.zshrc
-rm ~/.config/i3/config
+#cleaning up
+rm ~/.zshrc ~/.config/i3/config ~/.config/polybar/config 
+
 stow -t ~ */
 source ~/.zshrc
 chsh -s $(which zsh)
