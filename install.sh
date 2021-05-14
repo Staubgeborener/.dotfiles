@@ -76,31 +76,19 @@ cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applicatio
 sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop
 sudo ln -s ~/.local/kitty.app/bin/kitty /usr/bin
 
-read -p "Set up gpg keys for git and spotifd? " -n 1 -r
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-	read -p "Path to private key: " gpg-private-key
-	read -p "Path to public key: " gpg-public-key
-	gpg --import $(gpg-private-key)
-	gpg --import $(gpg-public-key)
-	echo ""
-	gpg --list-secret-keys --keyid-format LONG
-	read -p "Private key long id for git: " gpg-public-key-long-id
-	git config --global user.signingkey $(gpg-public-key-long-id)
-	read -p "Name for git: " git-name
-	git config --global user.name $(git-name)
-	read -p "Email for git: " git-email
-	git config --global user.email $(git-email)
-	echo "Lets do a test gpg sign:"
-	echo "xyz" | gpg --clearsign
-	echo ""
-	gpg --list-keys
-	read -p "Public Key for spotifyd: " spotifydpublickey
-	echo "Ultimate trust commands: trust, 5, y, quit"
-	gpg --edit-key $spotifydpublickey
-	pass init $spotifydpublickey
-	pass insert spotify
-fi
+# MANUAL GPG KEY SETUP
+# gpg --import $(gpg-private-key)
+# gpg --import $(gpg-public-key)
+# gpg --list-secret-keys --keyid-format LONG
+# git config --global user.signingkey GPG-KEYID-LONGFORMAT
+# git config --global user.name USERNAME
+# git config --global user.email EMAIL
+# echo "signing test" | gpg --clearsign
+# gpg --list-keys
+# echo "Ultimate trust commands: trust, 5, y, quit"
+# gpg --edit-key PUBLICKEY
+# pass init PUBLICKEY
+# pass insert spotify
 
 #i3-gaps
 git clone https://github.com/Airblader/i3 ~/i3
@@ -121,9 +109,8 @@ sudo apt install -y \
   libxcb-composite0-dev xcb libxcb-ewmh2 libjsoncpp-dev python3-sphinx
 sudo apt -t buster-backports install -y polybar
 
-#cleaning up
-rm ~/.zshrc ~/.config/i3/config ~/.config/polybar/config 
-
+rm ~/.zshrc
+rm ~/.config/i3/config
 stow -t ~ */
 source ~/.zshrc
 chsh -s $(which zsh)
@@ -131,3 +118,24 @@ chsh -s $(which zsh)
 echo "Warning: Automatic logout in 5 seconds to apply settings!"
 sleep 5
 sudo pkill -u ${USER}
+
+### MANUAL GPG KEY SETUP ###
+#--------------------------#
+# gpg --import $(gpg-private-key)
+# gpg --import $(gpg-public-key)
+# gpg --list-secret-keys --keyid-format LONG
+# git config --global user.signingkey GPG-KEYID-LONGFORMAT
+# git config --global user.name USERNAME
+# git config --global user.email EMAIL
+# echo "signing test" | gpg --clearsign
+# gpg --list-keys
+# echo "Ultimate trust commands: trust, 5, y, quit"
+# gpg --edit-key PUBLICKEY
+# pass init PUBLICKEY
+# pass insert spotify
+
+### MANUAL FONTS SETUP ###
+#------------------------#
+# Copy all fonts into /usr/share/fonts/
+# sudo fc-cache -frv
+# kitty list-fonts
