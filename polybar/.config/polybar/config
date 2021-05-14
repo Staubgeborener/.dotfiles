@@ -49,22 +49,20 @@ override-redirect = false
 modules-left = round-left i3 round-right
 modules-center =
 modules-right = battery pulseaudio cpu temperature memory wlan round-left date round-right powermenu
-font-0 = Hack:style=Bold:pixelsize=13;3
-font-1 = JetBrainsMonoNL Nerd Font Mono:style=Regular:size=18;5
-font-2 = Material Icons:style=Regular:size=13;3
-font-3 = Unifont:style=Regular:size=13:antialias=true;
+font-0 = Hack Nerd Font:style=Bold:pixelsize=13;3
+font-1 = JetBrainsMono Nerd Font:style=Regular:size=18;5
+font-2 = Material Design Icons:style=Regular:size=13;3
+font-3 = unifont:style=Regular:size=13:antialias=true;
 font-4 = Noto Color Emoji:style=Regular:size=8;3
 
 [module/round-left]
 type = custom/text
-#content = %{T3}%{T-}
-content = 
+content = %{T3}%{T-}
 content-foreground = ${colors.content-background}
 
 [module/round-right]
 type = custom/text
-#content = %{T3}%{T-}
-content = 
+content = %{T3}%{T-}
 content-foreground = ${colors.content-background}
 
 [module/xwindow]

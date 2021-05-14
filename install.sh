@@ -76,20 +76,6 @@ cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applicatio
 sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop
 sudo ln -s ~/.local/kitty.app/bin/kitty /usr/bin
 
-# MANUAL GPG KEY SETUP
-# gpg --import $(gpg-private-key)
-# gpg --import $(gpg-public-key)
-# gpg --list-secret-keys --keyid-format LONG
-# git config --global user.signingkey GPG-KEYID-LONGFORMAT
-# git config --global user.name USERNAME
-# git config --global user.email EMAIL
-# echo "signing test" | gpg --clearsign
-# gpg --list-keys
-# echo "Ultimate trust commands: trust, 5, y, quit"
-# gpg --edit-key PUBLICKEY
-# pass init PUBLICKEY
-# pass insert spotify
-
 #i3-gaps
 git clone https://github.com/Airblader/i3 ~/i3
 cd ~/i3
@@ -109,8 +95,9 @@ sudo apt install -y \
   libxcb-composite0-dev xcb libxcb-ewmh2 libjsoncpp-dev python3-sphinx
 sudo apt -t buster-backports install -y polybar
 
-rm ~/.zshrc
-rm ~/.config/i3/config
+#cleaning up
+rm ~/.zshrc ~/.config/i3/config ~/.config/polybar/config
+
 stow -t ~ */
 source ~/.zshrc
 chsh -s $(which zsh)
