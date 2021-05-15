@@ -76,15 +76,6 @@ cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applicatio
 sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop
 sudo ln -s ~/.local/kitty.app/bin/kitty /usr/bin
 
-#i3-gaps
-git clone https://github.com/Airblader/i3 ~/i3
-cd ~/i3
-mkdir -p build && cd build
-meson --prefix /usr/local
-ninja
-sudo ninja install
-cd $dotfilespath
-
 #polybar
 sudo apt install -y \
   cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev \
@@ -95,6 +86,17 @@ sudo apt install -y \
   libxcb-composite0-dev xcb libxcb-ewmh2 libjsoncpp-dev python3-sphinx
 sudo apt -t buster-backports install -y polybar
 
+#i3-gaps
+sudo apt install -y dh-autoreconf libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev xcb libxcb1-dev libxcb-icccm4-dev libyajl-dev libev-dev libxcb-xkb-dev libxcb-cursor-dev libxkbcommon-dev libxcb-xinerama0-dev libxkbcommon-x11-dev libstartup-notification0-dev libxcb-randr0-dev libxcb-xrm0 libxcb-xrm-dev libxcb-shape0 libxcb-shape0-dev
+git clone https://github.com/Airblader/i3 ~/i3
+cd ~/i3
+mkdir -p build && cd build
+#meson --prefix /usr/local
+meson ..
+ninja
+##sudo ninja install
+cd $dotfilespath
+ 
 #cleaning up
 rm ~/.zshrc ~/.config/i3/config ~/.config/polybar/config
 
