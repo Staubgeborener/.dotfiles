@@ -19,7 +19,6 @@ sudo apt install -y \
       ca-certificates \
       cargo \
       cifs-utils \
-      curl \
       git \
       imagemagick \
       libasound2-dev \
@@ -30,7 +29,6 @@ sudo apt install -y \
       libsqlite3-dev \
       locales \
       meson \
-      ninja-build \
       npm \
       openvpn \
       pass \
@@ -88,11 +86,12 @@ sudo apt install -y \
 sudo apt -t buster-backports install -y polybar
 
 #i3-gaps
+sudo apt install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf xutils-dev libtool automake
 mkdir /tmp/build 
 cd /tmp/build
 git clone https://www.github.com/Airblader/i3 i3-gaps
 cd i3-gaps
-git checkout gaps && git pull
+git checkout gaps-next && git pull
 meson -Ddocs=true -Dmans=true ../build
 meson compile -C ../build
 sudo meson install -C ../build
