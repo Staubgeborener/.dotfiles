@@ -19,6 +19,7 @@ sudo apt install -y \
       ca-certificates \
       cargo \
       cifs-utils \
+      feh \
       git \
       imagemagick \
       libasound2-dev \
@@ -96,7 +97,7 @@ meson -Ddocs=true -Dmans=true ../build
 meson compile -C ../build
 sudo meson install -C ../build
 cd $dotfilespath
- 
+
 #cleaning up
 rm ~/.zshrc ~/.config/i3/config ~/.config/polybar/config
 

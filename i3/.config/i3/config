@@ -9,6 +9,14 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+for_window [class="^.*"] border pixel 0
+#smart_gaps on
+gaps inner 10
+gaps outer 10
+
+bindsym $mod+z		gaps outer current plus 5
+bindsym $mod+Shift+z	gaps outer current minus 5
+
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -184,6 +192,9 @@ bindsym $mod+r mode "resize"
 #bar {
 #        status_command i3status
 #}
+
+#wallpaper
+exec_always feh --bg-scale ~/Bilder/Wallpaper/wallpaper.png
 
 #polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
