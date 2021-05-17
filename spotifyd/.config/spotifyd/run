@@ -1,7 +1,0 @@
-#!/bin/sh
-if [ ! $(pgrep "spotifyd") ]; then
-	~/spotifyd/target/release/spotifyd
-fi
-
-spt
-pkill spotifyd

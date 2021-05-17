@@ -54,14 +54,6 @@ sudo npm install --global pure-prompt
 
 sudo pip3 install thefuck
 
-#spotifyd
-#maybe edit ~/.config/spotifyd/spotifyd.conf and check devices with aplay -L
-mkdir ~/.cache/spotifyd-offline-cache
-git clone https://github.com/Spotifyd/spotifyd.git
-cd spotifyd
-cargo build --release --features dbus_mpris
-cd $dotfilespath
-
 #ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
@@ -99,7 +91,6 @@ meson compile -C ../build
 sudo meson install -C ../build
 cd $dotfilespath
 
-
 #rofi
 cd /tmp/build
 sudo apt install -y flex bison libgtk-3-dev
@@ -108,6 +99,15 @@ cd rofi
 meson setup build
 ninja -C build
 sudo ninja -C build install
+cd $dotfilespath
+
+#spotify / spicetify
+cd ~/.config
+curl -fsSL https://raw.githubusercontent.com/khanhas/spicetify-cli/master/install.sh | sh
+sudo chmod a+wr /usr/share/spotify
+sudo chmod a+wr /usr/share/spotify/Apps -R
+~/.config/spicetify/spicetify config current_theme Arc-Dark
+~/.config/spicetify/spicetify apply
 cd $dotfilespath
 
 #cleaning up
