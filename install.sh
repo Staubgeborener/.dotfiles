@@ -10,6 +10,9 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] 
 #sudo wget https://swupdate.openvpn.net/repos/openvpn-repo-pkg-key.pub
 #backports
 echo "deb http://deb.debian.org/debian buster-backports main contrib non-free" | sudo tee -a /etc/apt/sources.list
+#spotify
+curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 
 sudo apt update
 sudo apt install -y \
@@ -102,6 +105,7 @@ sudo ninja -C build install
 cd $dotfilespath
 
 #spotify / spicetify
+sudo apt install -y spotify-client
 cd ~/.config
 curl -fsSL https://raw.githubusercontent.com/khanhas/spicetify-cli/master/install.sh | sh
 sudo chmod a+wr /usr/share/spotify
