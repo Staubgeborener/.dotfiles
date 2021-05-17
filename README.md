@@ -5,7 +5,7 @@
 ```shell
 git clone --recursive https://github.com/Staubgeborener/.dotfiles.git $HOME/.dotfiles
 cd $HOME/.dotfiles
-stow -t ~ */
+stow -t ~ */ # or use the script to install all dependencies and packages
 ```
 
 ### Updating
