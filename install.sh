@@ -86,9 +86,10 @@ sudo apt install -y \
   libxcb-composite0-dev xcb libxcb-ewmh2 libjsoncpp-dev python3-sphinx
 sudo apt -t buster-backports install -y polybar
 
+mkdir /tmp/build
+
 #i3-gaps
 sudo apt install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf xutils-dev libtool automake
-mkdir /tmp/build 
 cd /tmp/build
 git clone https://www.github.com/Airblader/i3 i3-gaps
 cd i3-gaps
@@ -97,6 +98,16 @@ meson -Ddocs=true -Dmans=true ../build
 meson compile -C ../build
 sudo meson install -C ../build
 cd $dotfilespath
+
+
+#rofi
+cd /tmp/build
+sudo apt install -y flex bison libgtk-3-dev
+git clone https://github.com/davatorium/rofi
+cd rofi
+meson setup build
+ninja -C build
+sudo ninja -C build install
 
 #cleaning up
 rm ~/.zshrc ~/.config/i3/config ~/.config/polybar/config
@@ -127,5 +138,13 @@ sudo pkill -u ${USER}
 ### MANUAL FONTS SETUP ###
 #------------------------#
 # Copy all fonts into /usr/share/fonts/
+# set permissions!
+# fc-cache -frv
 # sudo fc-cache -frv
 # kitty list-fonts
+
+### VERACRYPT ###
+#_______________#
+# wget https://launchpad.net/veracrypt/trunk/1.24-update7/+download/veracrypt-1.24-Update7-setup.tar.bz2
+# tar -xf veracrypt-1.24-Update7-setup.tar.bz2
+# ./veracrypt-1.24-setup-gui-x64

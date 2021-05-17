@@ -31,6 +31,7 @@ light-gray = #565c64
 
 [bar/parrot]
 tray-position = right
+#correct monitor: xrandr -q | grep -w connected
 monitor = ${env:MONITOR:}
 width =  100%
 height = 23
@@ -200,7 +201,8 @@ type = internal/date
 interval = 5
 format = <label>
 format-background = ${colors.content-background}
-date = %{F#888e96}  %H:%M%{F-}
+date = %{F#888e96}⏲ %H:%M%{F-}
+
 time-alt = %{F#7199EE}  %a, %b %d%{F-}
 label = %date%%time%
 format-padding = 1
