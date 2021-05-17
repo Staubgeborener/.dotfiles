@@ -108,6 +108,7 @@ cd rofi
 meson setup build
 ninja -C build
 sudo ninja -C build install
+cd $dotfilespath
 
 #cleaning up
 rm ~/.zshrc ~/.config/i3/config ~/.config/polybar/config

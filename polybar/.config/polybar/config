@@ -48,7 +48,7 @@ line-size = 3
 wm-restack = i3
 override-redirect = false
 modules-left = round-left i3 round-right
-modules-center =
+modules-center = player-mpris-tail
 modules-right = battery pulseaudio cpu temperature memory wlan round-left date round-right powermenu
 font-0 = Hack Nerd Font:style=Bold:pixelsize=13;3
 font-1 = JetBrainsMono Nerd Font:style=Regular:size=18;5
@@ -66,9 +66,9 @@ type = custom/text
 content = %{T3}%{T-}
 content-foreground = ${colors.content-background}
 
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:30:...%
+#[module/xwindow]
+#type = internal/xwindow
+#label = %title:0:30:...%
 
 
 [module/xkeyboard]
@@ -97,6 +97,14 @@ label-mounted =  : %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
+[module/player-mpris-tail]
+type = custom/script
+exec = ~/.config/polybar/player-mpris-tail.py -f '{icon} {artist} - {title}'
+tail = true
+click-left = ~/.config/polybar/player-mpris-tail.py previous &
+click-right = ~/.config/polybar/player-mpris-tail.py next &
+click-middle = ~/.config/polybar/player-mpris-tail.py play-pause &
+
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
@@ -104,27 +112,40 @@ index-sort = true
 wrapping-scroll = false
 
 ; Only show workspaces on the same output as the bar
-;pin-workspaces = true
+pin-workspaces = true
+
+ws-icon-0 = 1;%{F#ff9b93}
+ws-icon-1 = 2;%{F#4BB1A7}
+ws-icon-2 = 3;%{F#4BB1A7}
+ws-icon-3 = 4;%{F#4BB1A7}
+ws-icon-4 = 5;%{F#A3BE8C}阮
+ws-icon-5 = 6;%{F#81A1C1}ﭮ
+ws-icon-6 = 7;%{F#72C7D1}金
+ws-icon-7 = 8;%{F#B888E2}
+ws-icon-8 = 9;%{F#C7C18B}
+ws-icon-9 = 0;%{F#AE8785}
 
 label-separator = ""
 label-separator-background = ${colors.content-background}
 label-focused = %icon% %name%
 label-focused-foreground = ${colors.foreground}
 label-focused-underline =  ${colors.light-gray}
-label-focused-padding = 1
+label-focused-padding = 2
 label-focused-background = ${colors.content-background}
 label-occupied = %icon% %name%
 label-occupied-foreground = ${colors.light-gray}
 label-occupied-background = ${colors.content-background}
-label-occupied-padding = 1
+label-occupied-padding = 2
 label-empty = ""
-label-empty-foreground =   ${colors.foreground}
-label-empty-padding = 1
+label-empty-foreground = ${colors.foreground}
+label-empty-padding = 2
 label-empty-background = ${colors.content-background}
 label-urgent = %icon% %name%
 label-urgent-foreground = ${colors.cyan}
 label-urgent-background = ${colors.content-background}
-label-urgent-padding = 1
+label-urgent-padding = 2
+label-unfocused-background = ${colors.content-background}
+label-unfocused-padding = 1
 
 [module/xbacklight]
 type = internal/xbacklight
