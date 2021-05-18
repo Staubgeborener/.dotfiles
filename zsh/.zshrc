@@ -5,7 +5,8 @@ prompt pure
 
 # Path
 export ZSH="$HOME/.oh-my-zsh"
-export PATH=$PATH:~/.local/bin:/snap/bin
+export PATH=$PATH:~/.local/bin:/snap/bin:~/.cargo/bin
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # Empty zsh theme for pure
 ZSH_THEME=""

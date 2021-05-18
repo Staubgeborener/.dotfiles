@@ -10,9 +10,8 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 for_window [class="^.*"] border pixel 0
-#smart_gaps on
-gaps inner 10
-gaps outer 10
+gaps inner 15
+gaps outer 0
 
 bindsym $mod+z		gaps outer current plus 5
 bindsym $mod+Shift+z	gaps outer current minus 5
@@ -58,10 +57,10 @@ bindsym $mod+Return exec kitty
 # kill focused window
 bindsym $mod+Shift+q kill
 
-#rofi
+# rofi
 bindsym $mod+Shift+s exec rofi -show drun
 
-#mute
+# mute
 bindsym $mod+Shift+m exec ~/.config/i3/mute.sh
 
 # start dmenu (a program launcher)
@@ -147,6 +146,8 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
+assign [class="Spotify"] $ws5
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
@@ -183,6 +184,12 @@ mode "resize" {
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width dsym odiaeresis resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
@@ -199,8 +206,12 @@ bindsym $mod+r mode "resize"
 #        status_command i3status
 #}
 
-#wallpaper
-exec_always feh --bg-scale ~/Bilder/Wallpaper/wallpaper.png
+# wallpaper
+exec_always --no-startup-id feh --bg-scale ~/Bilder/Wallpaper/wallpaper.png
 
-#polybar
+# polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# layout
+#exec --no-startup-id $HOME/.config/i3/load_layout.sh
+bindsym $mod+g exec $HOME/.config/i3/load_layout.sh

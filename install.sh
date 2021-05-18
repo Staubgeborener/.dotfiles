@@ -57,6 +57,8 @@ sudo npm install --global pure-prompt
 
 sudo pip3 install thefuck
 
+cargo install macchina
+
 #ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
@@ -115,7 +117,7 @@ sudo chmod a+wr /usr/share/spotify/Apps -R
 cd $dotfilespath
 
 #cleaning up
-rm ~/.zshrc ~/.config/i3/config ~/.config/polybar/config
+rm ~/.zshrc ~/.config/i3/config ~/.config/polybar/config ~/.config/spicetify/config-xpui.ini
 
 stow -t ~ */
 source ~/.zshrc
