@@ -60,14 +60,6 @@ cargo install spotify-tui
 
 sudo npm install --global pure-prompt
 
-# Install thefuck
-sudo pip3 install thefuck
-
-# Install trash-cli
-sudo pip3 install trash-cli
-echo 'export PATH="$PATH":~/.local/bin' >> ~/.bashrc
-source ~/.bashrc # reload .bashrc
-
 # ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # zsh plugins
@@ -109,6 +101,13 @@ sudo chmod a+wr /usr/share/spotify/Apps -R
 ~/.config/spicetify/spicetify config current_theme Arc-Dark
 ~/.config/spicetify/spicetify apply
 cd $dotfilespath
+
+# Install thefuck
+sudo pip3 install thefuck
+
+# Install trash-cli
+sudo pip3 install trash-cli
+echo 'export PATH="$PATH":~/.local/bin' >> ~/.zshrc
 
 #cleaning up
 rm ~/.zshrc ~/.config/i3/config ~/.config/polybar/config ~/.config/spicetify/config-xpui.ini
