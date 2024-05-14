@@ -63,23 +63,19 @@ sudo npm install --global pure-prompt
 
 sudo pip3 install thefuck
 
-cargo install macchina
-
 # ohmyzsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # zsh plugins
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/zdharma/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
 
 # Polybar
 mkdir $HOME/.config/polybar
-cp /etc/polybar/config.ini $HOME/.config/polybar/config.ini.
+cp /etc/polybar/config.ini $HOME/.config/polybar/config.ini
 
 echo -e '#!/usr/bin/env bash
 polybar-msg cmd quit
 echo "---" | tee -a /tmp/polybar1.log /tmp/polybar2.log
-polybar bar1 2>&1 | tee -a /tmp/polybar1.log & disown' > $HOME/.config/polybar/launch.s
+polybar bar1 2>&1 | tee -a /tmp/polybar1.log & disown' > $HOME/.config/polybar/launch.sh
 
 chmod +x $HOME/.config/polybar/launch.sh
 
@@ -113,6 +109,7 @@ cd $dotfilespath
 rm ~/.zshrc ~/.config/i3/config ~/.config/polybar/config ~/.config/spicetify/config-xpui.ini
 
 stow -t ~ */
+zsh
 source ~/.zshrc
 chsh -s $(which zsh)
 
