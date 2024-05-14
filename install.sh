@@ -1,6 +1,4 @@
 #!/bin/zsh
-dotfilespath=`pwd`
-
 sudo apt update
 sudo apt install -y \
       apt-transport-https \
@@ -61,10 +59,6 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 export PATH=/home/$USER/.cargo/bin:$PATH
 
-cargo install spotify-tui
-
-sudo npm install --global pure-prompt
-
 # ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # zsh plugins
@@ -73,29 +67,25 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 # Polybar
 mkdir $HOME/.config/polybar
 cp /etc/polybar/config.ini $HOME/.config/polybar/config.ini
-
 echo -e '#!/usr/bin/env bash
 polybar-msg cmd quit
 echo "---" | tee -a /tmp/polybar1.log /tmp/polybar2.log
 polybar bar1 2>&1 | tee -a /tmp/polybar1.log & disown' > $HOME/.config/polybar/launch.sh
-
 chmod +x $HOME/.config/polybar/launch.sh
 
 # Add polybar to i3
 sed -i '/^bar {/,/^}/d' ~/.config/i3/config
 echo 'exec_always --no-startup-id $HOME/.config/polybar/launch.sh' >> ~/.config/i3/config
 
-mkdir /tmp/build
-
-#rofi
-cd /tmp/build
+# Rofi
 sudo apt install -y flex bison libgtk-3-dev
 git clone https://github.com/davatorium/rofi
 cd rofi
 meson setup build
 ninja -C build
 sudo ninja -C build install
-cd $dotfilespath
+cd ..
+sudo rm -r rofi
 
 # Spotify / Spicetify (Marketplace)
 sudo apt install -y spotify-client
@@ -121,7 +111,7 @@ sudo pip3 install thefuck
 sudo pip3 install trash-cli
 echo 'export PATH="$PATH":~/.local/bin' >> ~/.zshrc
 
-#cleaning up
+# Cleaning up
 rm ~/.zshrc ~/.config/i3/config ~/.config/polybar/config ~/.config/spicetify/config-xpui.ini
 
 stow -t ~ */
