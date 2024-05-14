@@ -20,11 +20,13 @@ sudo apt install -y \
       asciidoc \
       build-essential \
       ca-certificates \
-      cargo \
       cifs-utils \
+      curl \
+      fastfetch \
       feh \
       git \
       imagemagick \
+      keepassxc \
       libasound2-dev \
       libbz2-dev \
       libfontconfig \
@@ -38,8 +40,6 @@ sudo apt install -y \
       pass \
       pkg-config \
       ranger \
-      rustc \
-      snapd \
       software-properties-common \
       stow \
       sudo \
@@ -47,10 +47,10 @@ sudo apt install -y \
       zsh \
     && sudo apt clean
 
-sudo snap install \
-      gh \
-      keepassxc \
-      spt
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+export PATH=/home/$USER/.cargo/bin:$PATH
+
+cargo install spotify-tui
 
 sudo npm install --global trash-cli
 sudo npm install --global pure-prompt
