@@ -99,15 +99,20 @@ cd $dotfilespath
 
 # Spotify / Spicetify (Marketplace)
 sudo apt install -y spotify-client
-# Need to Start Spotify at least one to create the /home/$USER/.config/spotify/prefs file
-# Maybe we need explicit Chrome Browser for this purpose:
-# wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-# sudo dpkg -i google-chrome-stable_current_amd64.deb
-# rm google-chrome-stable_current_amd64.deb
+# Need to Start Spotify at least once to create the /home/$USER/.config/spotify/prefs file
+# We need explicit Chrome Browser for this purpose:
+if ! command -v google-chrome-stable; then
+    echo "Google Chrome not installed which is required for the spotify login. Installing Google Chome ..."
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    sudo dpkg -i google-chrome-stable_current_amd64.deb
+    rm google-chrome-stable_current_amd64.deb
+fi
+# Force waiting
+read -p "Now log in to spotify and press any key to continue the installation"
 sudo chmod a+wr /usr/share/spotify
 sudo chmod a+wr /usr/share/spotify/Apps -R
 curl -fsSL https://raw.githubusercontent.com/khanhas/spicetify-cli/master/install.sh | sh
-#curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/resources/install.sh | sh
+sudo apt purge google-chrome-stable
 
 # Install thefuck
 sudo pip3 install thefuck
