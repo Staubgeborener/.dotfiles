@@ -22,7 +22,7 @@ plugins=(
   colored-man-pages
   colorize
   cp
-  fast-syntax-highlighting
+  zsh-syntax-highlighting
 )
 
 # Automatically change the current working directory after closing ranger
@@ -42,7 +42,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Aliases
 alias rm=trash
-alias icat="kitty +kitten icat"
 alias {spt,spotify-cli,spotify-tui}="~/.config/spotifyd/run"
 # Add, commit and sign
 alias gac="git add . && git commit -S -m" # + commit message
