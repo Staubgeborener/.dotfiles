@@ -28,6 +28,7 @@ sudo apt install -y \
       fastfetch \
       feh \
       git \
+      i3 \
       imagemagick \
       keepassxc \
       libasound2-dev \
@@ -51,6 +52,7 @@ sudo apt install -y \
       zsh \
     && sudo apt clean
 
+# Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 export PATH=/home/$USER/.cargo/bin:$PATH
 
@@ -63,35 +65,29 @@ sudo pip3 install thefuck
 
 cargo install macchina
 
-#ohmyzsh
+# ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
-#zsh plugins
+# zsh plugins
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zdharma/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
 
-#polybar
-sudo apt install -y \
-  cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev \
-  libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev \
-  libxcb-util0-dev libxcb-xkb-dev pkg-config python3-xcbgen \
-  xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev \
-  libiw-dev libcurl4-openssl-dev libpulse-dev \
-  libxcb-composite0-dev xcb libxcb-ewmh2 libjsoncpp-dev python3-sphinx
-sudo apt -t buster-backports install -y polybar
+# Polybar
+mkdir $HOME/.config/polybar
+cp /etc/polybar/config.ini $HOME/.config/polybar/config.ini.
+
+echo -e '#!/usr/bin/env bash
+polybar-msg cmd quit
+echo "---" | tee -a /tmp/polybar1.log /tmp/polybar2.log
+polybar bar1 2>&1 | tee -a /tmp/polybar1.log & disown' > $HOME/.config/polybar/launch.s
+
+chmod +x $HOME/.config/polybar/launch.sh
+
+# Add polybar to i3
+sed -i '/^bar {/,/^}/d' ~/.config/i3/config
+echo 'exec_always --no-startup-id $HOME/.config/polybar/launch.sh' >> ~/.config/i3/config
 
 mkdir /tmp/build
-
-#i3-gaps
-sudo apt install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf xutils-dev libtool automake
-cd /tmp/build
-git clone https://www.github.com/Airblader/i3 i3-gaps
-cd i3-gaps
-git checkout gaps-next && git pull
-meson -Ddocs=true -Dmans=true ../build
-meson compile -C ../build
-sudo meson install -C ../build
-cd $dotfilespath
 
 #rofi
 cd /tmp/build
