@@ -58,10 +58,15 @@ export PATH=/home/$USER/.cargo/bin:$PATH
 
 cargo install spotify-tui
 
-sudo npm install --global trash-cli
 sudo npm install --global pure-prompt
 
+# Install thefuck
 sudo pip3 install thefuck
+
+# Install trash-cli
+sudo pip3 install trash-cli
+echo 'export PATH="$PATH":~/.local/bin' >> ~/.bashrc
+source ~/.bashrc # reload .bashrc
 
 # ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
