@@ -14,6 +14,9 @@ echo "deb http://deb.debian.org/debian buster-backports main contrib non-free" |
 curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 
+curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+
 sudo apt update
 sudo apt install -y \
       apt-transport-https \
@@ -43,6 +46,7 @@ sudo apt install -y \
       software-properties-common \
       stow \
       sudo \
+      wezterm \
       zlib1g-dev \
       zsh \
     && sudo apt clean
@@ -65,13 +69,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 #zsh plugins
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zdharma/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
-
-#kitty terminal
-curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/
-cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
-sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop
-sudo ln -s ~/.local/kitty.app/bin/kitty /usr/bin
 
 #polybar
 sudo apt install -y \
@@ -148,7 +145,6 @@ sudo pkill -u ${USER}
 # set permissions!
 # fc-cache -frv
 # sudo fc-cache -frv
-# kitty list-fonts
 
 ### VERACRYPT ###
 #_______________#
