@@ -46,7 +46,7 @@ echo \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 # Spotify Key
-curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
+curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 # Wezterm Key
 curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
@@ -97,15 +97,17 @@ ninja -C build
 sudo ninja -C build install
 cd $dotfilespath
 
-#spotify / spicetify
+# Spotify / Spicetify (Marketplace)
 sudo apt install -y spotify-client
-cd ~/.config
-curl -fsSL https://raw.githubusercontent.com/khanhas/spicetify-cli/master/install.sh | sh
+# Need to Start Spotify at least one to create the /home/$USER/.config/spotify/prefs file
+# Maybe we need explicit Chrome Browser for this purpose:
+# wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+# sudo dpkg -i google-chrome-stable_current_amd64.deb
+# rm google-chrome-stable_current_amd64.deb
 sudo chmod a+wr /usr/share/spotify
 sudo chmod a+wr /usr/share/spotify/Apps -R
-~/.config/spicetify/spicetify config current_theme Arc-Dark
-~/.config/spicetify/spicetify apply
-cd $dotfilespath
+curl -fsSL https://raw.githubusercontent.com/khanhas/spicetify-cli/master/install.sh | sh
+#curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/resources/install.sh | sh
 
 # Install thefuck
 sudo pip3 install thefuck
