@@ -53,7 +53,7 @@ echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/w
 sudo apt update
 
 # Docker
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -63,15 +63,6 @@ export PATH=/home/$USER/.cargo/bin:$PATH
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # zsh plugins
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
-# Polybar
-mkdir $HOME/.config/polybar
-cp /etc/polybar/config.ini $HOME/.config/polybar/config.ini
-echo -e '#!/usr/bin/env bash
-polybar-msg cmd quit
-echo "---" | tee -a /tmp/polybar1.log /tmp/polybar2.log
-polybar bar1 2>&1 | tee -a /tmp/polybar1.log & disown' > $HOME/.config/polybar/launch.sh
-chmod +x $HOME/.config/polybar/launch.sh
 
 # Add polybar to i3
 sed -i '/^bar {/,/^}/d' ~/.config/i3/config
@@ -89,7 +80,7 @@ sudo rm -r rofi
 
 # Spotify / Spicetify (Marketplace)
 sudo apt install -y spotify-client
-# Need to Start Spotify at least once to create the /home/$USER/.config/spotify/prefs file
+# Need to start Spotify at least once to create the /home/$USER/.config/spotify/prefs file
 # We need explicit Chrome Browser for this purpose:
 if ! command -v google-chrome-stable; then
     echo "Google Chrome not installed which is required for the spotify login. Installing Google Chome ..."
@@ -97,6 +88,7 @@ if ! command -v google-chrome-stable; then
     sudo dpkg -i google-chrome-stable_current_amd64.deb
     rm google-chrome-stable_current_amd64.deb
 fi
+spotify
 # Force waiting
 read -p "Now log in to spotify and press any key to continue the installation"
 sudo chmod a+wr /usr/share/spotify
@@ -119,6 +111,10 @@ zsh
 source ~/.zshrc
 chsh -s $(which zsh)
 
+# Polybar (launch.sh is from the dotfiles, so stow must be run first before chmod can be done)
+chmod +x $HOME/.config/polybar/launch.sh
+
+# Logout
 echo "Warning: Automatic logout in 5 seconds to apply settings!"
 sleep 5
 sudo pkill -u ${USER}
