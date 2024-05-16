@@ -29,6 +29,7 @@ sudo apt install -y \
       software-properties-common \
       stow \
       sudo \
+      ugrep \
       wezterm \
       zlib1g-dev \
       zsh \
@@ -102,6 +103,10 @@ sudo pip3 install thefuck
 # Install trash-cli
 sudo pip3 install trash-cli
 echo 'export PATH="$PATH":~/.local/bin' >> ~/.zshrc
+
+# ugrep aliases
+alias grep='ugrep -G'
+alias egrep='ugrep -E'
 
 # Cleaning up
 rm ~/.zshrc ~/.config/i3/config ~/.config/polybar/config ~/.config/spicetify/config-xpui.ini
