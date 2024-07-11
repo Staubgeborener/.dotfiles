@@ -12,3 +12,9 @@ echo "Run :MasonInstallAll in nvim"
 sleep 2
 git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
 sudo rm -r ~/.config/nvim/.git
+
+# Download nerd-fonts
+https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+unzip JetBrainsMono.zip -d ~/.fonts
+fc-cache -fv
+rm JetBrainsMono.zip
