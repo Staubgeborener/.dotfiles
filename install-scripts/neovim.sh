@@ -7,7 +7,7 @@ echo "export PATH="$PATH:/opt/nvim-linux64/bin"" > ~/.bashrc
 source ~/.bashrc
 sudo rm -r ~/.config/nvim/
 
-# NcChad install: https://nvchad.com/docs/quickstart/install/
+# NvChad install: https://nvchad.com/docs/quickstart/install/
 echo "Run :MasonInstallAll in nvim"
 sleep 2
 git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
